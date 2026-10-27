@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jism og‘irligining harakat turiga bog‘liqligi</title>
+<style>
+:root{--bg:#eef4fb;--card:#fff;--ink:#14233b;--blue:#2463eb;--cyan:#06b6d4;--orange:#f59e0b;--green:#15966b;--muted:#5c6b82}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#e9f2ff,#f6f9ff);color:var(--ink);line-height:1.55}
+header{padding:30px 18px 26px;background:linear-gradient(120deg,#123b82,#2563eb 60%,#06b6d4);color:#fff;text-align:center}
+header h1{max-width:900px;margin:0 auto 8px;font-size:clamp(1.55rem,4vw,2.5rem)}header p{margin:0 auto;max-width:760px;color:#eaf5ff}
+main{max-width:1050px;margin:22px auto;padding:0 14px 35px}.plan{background:var(--card);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 8px 25px #1e3a5f12;border:1px solid #dce7f5}
+h2{font-size:1.35rem;margin:0 0 10px;color:#1749a5}h3{font-size:1.05rem;margin:12px 0 6px}p{margin:8px 0}.muted{color:var(--muted)}.formula{background:#edf5ff;border-left:4px solid var(--blue);padding:12px 15px;border-radius:8px;font-size:1.06rem;font-weight:bold;margin:12px 0}
+.sim{background:#f7faff;border:1px solid #d8e5f7;border-radius:14px;padding:16px;margin-top:15px}
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}.controls label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.controls input[type=range]{width:150px;accent-color:var(--blue)}select,button{font:inherit;border:1px solid #c8d6ea;border-radius:9px;padding:9px 12px;background:#fff;color:var(--ink)}button{background:var(--blue);color:white;border:0;cursor:pointer;font-weight:bold}button.secondary{background:#e3edff;color:#1647a0}button:hover{filter:brightness(.96)}
+.scene{height:230px;position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(#dff4ff,#f7fbff 75%);border:1px solid #d4e5f5}
+.floor{position:absolute;bottom:0;left:0;right:0;height:17px;background:repeating-linear-gradient(135deg,#9bb4d0 0 8px,#c5d5e7 8px 16px);border-top:3px solid #6884a6}
+.lift{position:absolute;bottom:17px;left:50%;transform:translateX(-50%);width:150px;height:190px;border:5px solid #59718e;border-bottom:0;border-radius:9px 9px 0 0;background:#ffffff8c}
+.lift:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:3px solid #9aacc1}
+.person{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:34px;height:70px;transition:bottom .5s}
+.head{width:22px;height:22px;border-radius:50%;background:#f2bf91;margin:auto;border:2px solid #925b35}.bodyshape{width:28px;height:32px;background:#2563eb;border-radius:7px 7px 3px 3px;margin:1px auto}.legs{display:flex;justify-content:center;gap:5px}.legs span{height:16px;width:8px;background:#334155;border-radius:0 0 3px 3px}
+.gauge{position:absolute;bottom:30px;left:calc(50% + 95px);width:75px;text-align:center;font-size:12px;color:#334155}.gauge .dial{height:65px;border:4px solid #7b8fa8;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:16px}
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}.stat{padding:12px;background:#fff;border:1px solid #dce7f5;border-radius:10px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:1.2rem}
+canvas{width:100%;max-width:100%;height:220px;display:block;background:#fff;border-radius:10px;border:1px solid #dce7f5}
+.quiz{background:#f2fbf7;border:1px solid #bde8d4;border-radius:12px;padding:15px;margin-top:14px}.quiz label{display:block;margin:7px 0}.feedback{font-weight:bold;margin-top:8px}
+footer{text-align:center;color:var(--muted);padding:10px 15px 28px;font-size:.9rem}
+@media(max-width:560px){.plan{padding:16px}.scene{height:210px}.lift{width:130px}.gauge{left:calc(50% + 78px);width:67px}.controls{align-items:flex-start;flex-direction:column}.controls input[type=range]{width:180px}}
+</style>
+</head>
+<body>
+<header>
+<h1>Jism og‘irligining harakat turiga bog‘liqligi</h1>
+<p>Fizika darsi uchun interaktiv HTML5 material • tushuntirish, simulyatsiya, animatsiya va masalalar</p>
+</header>
+<main>
+<section class="plan">
+<h2>1-reja. Jism og‘irligi va unga ta’sir etuvchi omillar</h2>
+<p><b>Jism og‘irligi</b> — jismning tayanchga yoki osmaga ta’sir etadigan kuchi. Tinch holatda yoki vertikal tezlanishsiz harakatda, havo qarshiligi hisobga olinmasa, jism og‘irligi odatda og‘irlik kuchiga teng bo‘ladi.</p>
+<div class="formula">Og‘irlik kuchi: F<sub>g</sub> = mg</div>
+<p>Bu yerda <b>m</b> — massa (kg), <b>g</b> — erkin tushish tezlanishi (Yer yuzida taxminan 9,8 m/s²). Massa kilogrammda, kuch esa nyutonda (N) o‘lchanadi.</p>
+<p class="muted">Farq: og‘irlik kuchi Yerning jismga ta’siri; jism og‘irligi esa jismning tayanch yoki osmaga ta’sir kuchidir.</p>
+<div class="sim">
+<h3>Simulyatsiya 1: massani o‘zgartiring</h3>
+<div class="controls"><label>Massa: <b id="massVal">5 kg</b><input id="mass" type="range" min="1" max="20" value="5"></label><label>Erkin tushish tezlanishi: <select id="gravity"><option value="9.8">Yer — 9,8 m/s²</option><option value="1.62">Oy — 1,62 m/s²</option><option value="3.71">Mars — 3,71 m/s²</option></select></label></div>
+<div class="statrow"><div class="stat"><small>Massa</small><strong id="massStat">5 kg</strong></div><div class="stat"><small>Og‘irlik kuchi mg</small><strong id="forceStat">49 N</strong></div><div class="stat"><small>Og‘irlik (tinch holat)</small><strong id="weightStat">49 N</strong></div></div>
+<p id="gravityExplain" class="muted">Yerda 5 kg massali jismning og‘irlik kuchi taxminan 49 N.</p>
+</div>
+</section>
+
+<section class="plan">
+<h2>2-reja. Turli harakatlarda jism og‘irligining o‘zgarishi</h2>
+<p>Vertikal yo‘nalishda tezlanish bo‘lsa, tayanchning jismga ta’sir kuchi o‘zgaradi. Lift misolida bu kuch tarozi ko‘rsatishiga mos keladi.</p>
+<div class="formula">Yuqoriga tezlanishda: P = m(g + a) &nbsp; | &nbsp; Pastga tezlanishda: P = m(g − a)</div>
+<p>Bu formulalarda <b>P</b> — tarozi ko‘rsatadigan ko‘rinma og‘irlik, <b>a</b> — lift tezlanishining moduli. Erkin tushishda a = g bo‘lib, P = 0: jism tayanchga bosim bermaydi va vaznsizlik kuzatiladi.</p>
+<div class="sim">
+<h3>Simulyatsiya 2: lift harakati</h3>
+<div class="controls">
+<label>Harakat turi: <select id="motion"><option value="rest">Tinch yoki tekis harakat</option><option value="up">Yuqoriga tezlanish</option><option value="down">Pastga tezlanish</option><option value="free">Erkin tushish (vaznsizlik)</option></select></label>
+<label>Massa: <b id="liftMassVal">60 kg</b><input id="liftMass" type="range" min="20" max="120" value="60" step="5"></label>
+<label>Tezlanish: <b id="accVal">2 m/s²</b><input id="acc" type="range" min="0" max="9.8" value="2" step="0.2"></label>
+</div>
+<div class="scene" id="scene"><div class="lift"><div class="person" id="person"><div class="head"></div><div class="bodyshape"></div><div class="legs"><span></span><span></span></div></div></div><div class="gauge"><div class="dial" id="dial">588 N</div><div>Tarozi</div></div><div class="floor"></div></div>
+<div class="statrow"><div class="stat"><small>Haqiqiy og‘irlik kuchi mg</small><strong id="trueForce">588 N</strong></div><div class="stat"><small>Tarozi ko‘rsatishi P</small><strong id="apparent">588 N</strong></div><div class="stat"><small>Holat</small><strong id="stateText">Oddiy og‘irlik</strong></div></div>
+<p class="muted" id="motionExplain">Tinch yoki tekis harakatda tarozi ko‘rsatishi mg ga teng.</p>
+</div>
+</section>
+
+<section class="plan">
+<h2>3-reja. Tajriba, grafik va masalalar orqali o‘rganish</h2>
+<p>Lift yoki dinamometr yordamida tarozi ko‘rsatishidagi o‘zgarishni kuzatish mumkin. Tezlanish yuqoriga yo‘nalganida ko‘rinma og‘irlik ortadi; pastga yo‘nalganida kamayadi.</p>
+<div class="sim">
+<h3>Grafik: tezlanish va ko‘rinma og‘irlik</h3>
+<p class="muted">Massa 60 kg deb olingan. Harakat turini tanlab, tarozi ko‘rsatishining qanday o‘zgarishini ko‘ring.</p>
+<div class="controls"><label>Grafik holati: <select id="graphMotion"><option value="up">Yuqoriga tezlanish</option><option value="down">Pastga tezlanish</option></select></label></div>
+<canvas id="graph" width="850" height="250" aria-label="Tezlanish va ko‘rinma og‘irlik grafigi"></canvas>
+</div>
+<div class="sim">
+<h3>Masala namunasi</h3>
+<p><b>Masala:</b> massasi 50 kg bo‘lgan yo‘lovchi liftda yuqoriga 1,5 m/s² tezlanish bilan harakatlanmoqda. Tarozi ko‘rsatishini toping. g = 9,8 m/s².</p>
+<div class="formula">P = m(g + a) = 50 × (9,8 + 1,5) = 565 N</div>
+<p><b>Javob:</b> 565 N. Tinch holatdagi 490 N bilan solishtirganda ko‘rinma og‘irlik ortgan.</p>
+</div>
+<div class="quiz">
+<h3>O‘zingizni sinab ko‘ring</h3>
+<p>Massasi 40 kg bo‘lgan bola liftda pastga 2 m/s² tezlanish bilan harakatlanmoqda. g = 9,8 m/s². Tarozi ko‘rsatishi qancha?</p>
+{@body const [answer,setAnswer] = DIL.useState("")}
+{@body const [checked,setChecked] = DIL.useState(false)}
+<label><input type="radio" name="quiz" value="392" /> 392 N</label>
+<label><input type="radio" name="quiz" value="312" /> 312 N</label>
+<label><input type="radio" name="quiz" value="472" /> 472 N</label>
+<button type="button" id="checkAnswer">Javobni tekshirish</button>
+<div class="feedback" id="feedback" aria-live="polite"></div>
+</div>
+</section>
+<section class="plan">
+<h2>Xulosa</h2>
+<ul>
+<li>Tinch holatda yoki tekis vertikal harakatda: P = mg.</li>
+<li>Yuqoriga tezlanishda ko‘rinma og‘irlik ortadi: P = m(g + a).</li>
+<li>Pastga tezlanishda ko‘rinma og‘irlik kamayadi: P = m(g − a).</li>
+<li>Erkin tushishda ko‘rinma og‘irlik nolga teng bo‘ladi — vaznsizlik.</li>
+</ul>
+</section>
+</main>
+<footer>Interaktiv dars materiali • HTML5, CSS va JavaScript asosida tayyorlandi</footer>
+<script>
+const $=id=>document.getElementById(id);
+function updateMass(){
+ const m=+$('mass').value,g=+$('gravity').value,w=m*g;
+ $('massVal').textContent=m+' kg';$('massStat').textContent=m+' kg';$('forceStat').textContent=w.toFixed(1)+' N';$('weightStat').textContent=w.toFixed(1)+' N';
+ const planet=$('gravity').selectedOptions[0].text.split(' — ')[0];
+ $('gravityExplain').textContent=planet+'da '+m+' kg massali jism uchun mg = '+w.toFixed(1)+' N. Massa o‘zgarmaydi, lekin g o‘zgarsa og‘irlik kuchi o‘zgaradi.';
+}
+$('mass').addEventListener('input',updateMass);$('gravity').addEventListener('change',updateMass);
+function updateLift(){
+ const m=+$('liftMass').value,a=+$('acc').value,g=9.8,mode=$('motion').value;
+ let p=m*g,state='Oddiy og‘irlik',desc='Tinch yoki tekis harakatda tarozi ko‘rsatishi mg ga teng.',offset=0;
+ if(mode==='up'){p=m*(g+a);state='Og‘irlik ortadi';desc='Lift yuqoriga tezlanmoqda: P = m(g + a). Tarozi ko‘rsatishi odatdagidan katta.';offset=10;}
+ if(mode==='down'){p=m*Math.max(0,g-a);state='Og‘irlik kamayadi';desc='Lift pastga tezlanmoqda: P = m(g − a). Tezlanish ortgan sari tarozi ko‘rsatishi kamayadi.';offset=-8;}
+ if(mode==='free'){p=0;state='Vaznsizlik';desc='Erkin tushishda a = g, shuning uchun tayanch kuchi P = 0. Bu vaznsizlik holati.';offset=-20;}
+ $('liftMassVal').textContent=m+' kg';$('accVal').textContent=a.toFixed(1)+' m/s²';$('trueForce').textContent=(m*g).toFixed(1)+' N';$('apparent').textContent=p.toFixed(1)+' N';$('dial').textContent=p.toFixed(0)+' N';$('stateText').textContent=state;$('motionExplain').textContent=desc;
+ $('person').style.bottom=(Math.max(0,Math.min(32,offset+18)))+'px';
+ $('person').style.transform='translateX(-50%) '+(mode==='free'?'rotate(7deg)':'rotate(0deg)');
+ drawGraph();
+}
+['motion','liftMass','acc'].forEach(id=>$(id).addEventListener('input',updateLift));
+$('graphMotion').addEventListener('change',drawGraph);
+function drawGraph(){
+ const c=$('graph'),ctx=c.getContext('2d'),w=c.width,h=c.height,m=60,g=9.8,mode=$('graphMotion').value;
+ ctx.clearRect(0,0,w,h);ctx.font='14px Arial';ctx.fillStyle='#14233b';ctx.strokeStyle='#cbd8e8';ctx.lineWidth=1;
+ const L=65,R=20,T=18,B=42,gw=w-L-R,gh=h-T-B,max=1200;
+ for(let i=0;i<=5;i++){let y=T+gh*i/5;ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillStyle='#52647c';ctx.fillText(Math.round(max*(1-i/5))+' N',8,y+4);}
+ for(let i=0;i<=5;i++){let x=L+gw*i/5;ctx.beginPath();ctx.moveTo(x,T);ctx.lineTo(x,T+gh);ctx.stroke();ctx.fillStyle='#52647c';ctx.fillText((9.8*i/5).toFixed(1),x-10,h-18);}
+ ctx.fillStyle='#14233b';ctx.fillText('Tezlanish a (m/s²)',w/2-65,h-2);
+ ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.beginPath();
+ for(let i=0;i<=100;i++){let a=9.8*i/100,p=mode==='up'?m*(g+a):m*(g-a),x=L+gw*a/9.8,y=T+gh*(1-p/max);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();
+ ctx.fillStyle='#2563eb';ctx.fillText(mode==='up'?'P = m(g + a)':'P = m(g − a)',L+12,T+18);
+}
+$('checkAnswer').addEventListener('click',()=>{
+ const chosen=document.querySelector('input[name="quiz"]:checked');
+ $('feedback').textContent=!chosen?'Iltimos, javob variantini tanlang.':chosen.value==='312'?'To‘g‘ri! P = m(g − a) = 40 × (9,8 − 2) = 312 N.':'Qayta urinib ko‘ring. Pastga tezlanishda P = m(g − a) formulasidan foydalaning.';
+ $('feedback').style.color=chosen&&chosen.value==='312'?'#087443':'#b45309';
+});
+updateMass();updateLift();
+</script>
+</body>
+</html>
